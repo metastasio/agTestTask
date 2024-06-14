@@ -35,4 +35,13 @@
     justify-content: center;
     gap: 20px;
   }
+
+  .header_title {
+    font-size: 64px;
+  }
+
+  .header_description {
+    margin: 0 297px;
+    font-size: 20px;
+  }
 }
