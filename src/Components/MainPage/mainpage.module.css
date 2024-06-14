@@ -10,6 +10,7 @@
   margin-bottom: 16px;
   padding: 0;
   font-size: 36px;
+  font-weight: normal;
 }
 
 .header_description {
@@ -27,7 +28,7 @@
   align-items: center;
 }
 
-@media (min-width: 880px) {
+@media (min-width: 760px) {
   .userlist {
     margin: 48px 80px 56px;
     flex-flow: row wrap;

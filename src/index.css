@@ -28,6 +28,7 @@ body {
   padding: 0;
   background-color: var(--bg-main);
   color: var(--fc-main);
+  font-size: 16px;
 }
 
 a {
@@ -36,4 +37,8 @@ a {
   &:visited {
     color: var(--bg-secondary);
   }
+}
+
+button:hover {
+  cursor: pointer;
 }
