@@ -1,27 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { CardItem } from './CardItem';
-
-type StateProperties = {
-  avatar: string;
-  email: string;
-  first_name: string;
-  id: number;
-  last_name: string;
-};
+import { setUsers } from '../../store/usersSlice';
 
 export const MainPage = () => {
-  const [users, setUsers] = useState<StateProperties[]>([]);
+  const { userList, error } = useAppSelector((state) => state.users);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    fetch('https://reqres.in/api/users?page=2')
-      .then((response) => response.json())
-      .then((data) => setUsers(data.data))
-      .catch((error) => {
-        throw error;
-      });
-  }, []);
-
-  console.log(users, 'USERS');
+    dispatch(setUsers());
+  }, [dispatch]);
 
   return (
     <>
@@ -34,9 +22,9 @@ export const MainPage = () => {
         </p>
       </header>
       <main>
-        {users.length !== 0 ? (
+        {userList && userList?.length > 0 ? (
           <ul>
-            {users.map((user) => (
+            {userList.map((user) => (
               <CardItem
                 key={user.id}
                 id={user.id}
@@ -47,7 +35,7 @@ export const MainPage = () => {
             ))}
           </ul>
         ) : (
-          <p>No users to display</p>
+          <p>{error}</p>
         )}
       </main>
     </>
