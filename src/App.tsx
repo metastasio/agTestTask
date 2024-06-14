@@ -3,6 +3,7 @@ import { SingInPage } from './Components/SignIn/SignInPage';
 import { SignUpPage } from './Components/SignUp/SignUpPage';
 import { MainPage } from './Components/MainPage/MainPage';
 import { NotFound } from './Components/NotFound';
+import { User } from './Components/User/User';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path='/register' element={<SignUpPage />}></Route>
           <Route path='/' element={<MainPage />}></Route>
           <Route path='*' element={<NotFound />}></Route>
+          <Route path='user/:id' element={<User />} />
         </Routes>
       </BrowserRouter>
     </>

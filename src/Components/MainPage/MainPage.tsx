@@ -38,12 +38,12 @@ export const MainPage = () => {
           <ul>
             {users.map((user) => (
               <CardItem
+                key={user.id}
                 id={user.id}
                 firstName={user.first_name}
                 lastName={user.last_name}
                 avatar={user.avatar}
               />
-              // <li key={user.id}>{user.email}</li>
             ))}
           </ul>
         ) : (

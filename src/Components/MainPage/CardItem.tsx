@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 type CardItemProps = {
   id: number;
   firstName: string;
@@ -8,9 +10,11 @@ type CardItemProps = {
 export const CardItem = (props: CardItemProps) => {
   const { id, firstName, lastName, avatar } = props;
   return (
-    <li key={id}>
-      <img src={avatar} alt={`Фото пользователя ${firstName} ${lastName}`} />
-      {firstName} {lastName}
+    <li>
+      <Link to={`user/${id}`}>
+        <img src={avatar} alt={`Фото пользователя ${firstName} ${lastName}`} />
+        {firstName} {lastName}
+      </Link>
     </li>
   );
 };
