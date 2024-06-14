@@ -1,0 +1,35 @@
+.user_card {
+  margin-bottom: 20px;
+  padding: 0 20px 20px;
+  width: 305px;
+  text-align: center;
+  border-radius: var(--base-radius);
+  -webkit-box-shadow: 0 0 5px 2px var(--shadow);
+  -moz-box-shadow: 0 0 5px 2px var(--shadow);
+  box-shadow: 0 0 5px 2px var(--shadow);
+}
+
+.pfp {
+  margin: 36px auto 16px;
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  width: 124px;
+  height: 124px;
+}
+
+.profile_name {
+  margin: 0;
+  margin-bottom: 16px;
+  padding: 0;
+  font-size: 20px;
+}
+
+.card_button {
+  display: block;
+  margin-left: auto;
+  border: none;
+  border-radius: var(--mini-radius);
+  height: 28px;
+  width: 30px;
+}

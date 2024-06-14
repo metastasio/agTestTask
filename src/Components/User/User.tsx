@@ -8,12 +8,11 @@ export const User = () => {
   const currentUser = userList
     ?.filter((user) => user.id === currentUserId)
     .flat();
-  // const { firstName, lastName, email, avatar } = currentUser?.[0];
   const firstName = currentUser?.[0].first_name;
   const lastName = currentUser?.[0].last_name;
   const avatar = currentUser?.[0].avatar;
   const email = currentUser?.[0].email;
-  console.log(currentUser?.[0].email, 'USER');
+
   return (
     <>
       <header>
