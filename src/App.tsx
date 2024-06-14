@@ -1,4 +1,4 @@
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { SingInPage } from './Components/SignIn/SignInPage';
 import { SignUpPage } from './Components/SignUp/SignUpPage';
 import { MainPage } from './Components/MainPage/MainPage';
@@ -8,10 +8,12 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Route path='/login' element={<SingInPage />}></Route>
-        <Route path='/register' element={<SignUpPage />}></Route>
-        <Route path='/' element={<MainPage />}></Route>
-        <Route path='*' element={<NotFound />}></Route>
+        <Routes>
+          <Route path='/login' element={<SingInPage />}></Route>
+          <Route path='/register' element={<SignUpPage />}></Route>
+          <Route path='/' element={<MainPage />}></Route>
+          <Route path='*' element={<NotFound />}></Route>
+        </Routes>
       </BrowserRouter>
     </>
   );
