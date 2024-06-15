@@ -33,7 +33,7 @@ export const User = () => {
               />
             </svg>
           </Link>
-          <div className={styles.user_nav_link_back}>
+          <div className={styles.user_nav_link_back_desktop}>
             <Link className={styles.user_nav_link_desktop} to={'/'}>
               Назад
             </Link>

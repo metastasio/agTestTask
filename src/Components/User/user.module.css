@@ -6,7 +6,6 @@
 }
 
 .user_nav {
-  border: 1px solid red;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -82,7 +81,7 @@
     display: none;
   }
 
-  .user_nav_link_back {
+  .user_nav_link_back_desktop {
     padding: 8px 16px;
     width: 80px;
     height: 38px;

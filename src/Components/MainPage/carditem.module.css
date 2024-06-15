@@ -9,7 +9,7 @@
   box-shadow: 0 0 5px 2px var(--shadow);
 }
 
-.pfp {
+.user_card_pfp {
   margin: 36px auto 16px;
   display: block;
   border-radius: 50%;
@@ -18,7 +18,7 @@
   height: 124px;
 }
 
-.profile_name {
+.user_card_profile_name {
   margin: 0;
   margin-bottom: 16px;
   padding: 0;
@@ -26,7 +26,7 @@
   font-weight: normal;
 }
 
-.card_button {
+.user_card_button {
   display: block;
   margin-left: auto;
   border: none;

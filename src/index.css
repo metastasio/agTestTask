@@ -38,8 +38,7 @@ a {
   &:visited {
     color: var(--bg-secondary);
   }
-  &:focus-visible {
-    outline: 1px solid var(--accent2);
+}
 
 button:hover {
   cursor: pointer;

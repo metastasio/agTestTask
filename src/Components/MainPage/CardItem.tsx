@@ -15,17 +15,17 @@ export const CardItem = (props: CardItemProps) => {
     <li className={styles.user_card}>
       <Link to={`user/${id}`}>
         <img
-          className={styles.pfp}
+          className={styles.user_card_pfp}
           src={avatar}
           alt={`Фото пользователя ${firstName} ${lastName}`}
           width='124'
           height='124'
         />
-        <p className={styles.profile_name}>
+        <p className={styles.user_card_profile_name}>
           {firstName} {lastName}
         </p>
       </Link>
-      <button className={styles.card_button}>3</button>
+      <button className={styles.user_card_button}>3</button>
     </li>
   );
 };
