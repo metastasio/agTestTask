@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../store/hooks';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 
 import styles from './user.module.css';
 
@@ -7,9 +7,10 @@ export const User = () => {
   const { userList } = useAppSelector((state) => state.users);
   const { pathname } = useLocation();
   const currentUserId = Number(pathname.split('/').slice(-1)[0]);
-  const currentUser = userList
-    ?.filter((user) => user.id === currentUserId)
-    .flat();
+  // let params = useParams();
+  // console.log(params);
+  const currentUser = userList?.filter((user) => user.id === currentUserId);
+  const { first_name } = currentUser?.[0];
   const firstName = currentUser?.[0].first_name;
   const lastName = currentUser?.[0].last_name;
   const avatar = currentUser?.[0].avatar;
@@ -94,9 +95,11 @@ export const User = () => {
                 strokeLinejoin='round'
               />
             </svg>
-            <span className={styles.user_contact_item_content}>
-              +7 (954) 333-44-55
-            </span>
+            <a href='tel:+79543334455'>
+              <span className={styles.user_contact_item_content}>
+                +7 (954) 333-44-55
+              </span>
+            </a>
           </li>
           <li className={styles.user_contact_item}>
             <svg
@@ -112,7 +115,9 @@ export const User = () => {
                 fill='#512689'
               />
             </svg>
-            <span className={styles.user_contact_item_content}>{email}</span>
+            <a href={`mailto:${email}`}>
+              <span className={styles.user_contact_item_content}>{email}</span>
+            </a>
           </li>
         </ul>
 

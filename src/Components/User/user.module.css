@@ -66,13 +66,19 @@
   list-style-type: none;
 }
 
-.user_contact_item + .user_contact_item {
-  margin-top: 24px;
+.user_contact_item {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 8px;
+  align-items: center;
 }
 
-.user_contact_item_content {
-  margin-left: 8px;
-  line-height: 16px;
+.user_contact_item_svg {
+  flex-shrink: 0;
+}
+
+.user_contact_item + .user_contact_item {
+  margin-top: 24px;
 }
 
 @media (min-width: 760px) {
@@ -125,18 +131,25 @@
 
   .user_profile {
     padding: 32px 80px;
+    min-height: 265px;
+    position: relative;
   }
+
   .user_main_info {
     display: flex;
     flex-flow: row nowrap;
     gap: 20px;
     justify-content: flex-start;
     align-items: center;
-    align-content: center;
+
+    position: absolute;
+    left: 188px;
+    top: 40px;
   }
 
   .user_pfp {
     order: 1;
+    margin: 0;
   }
 
   .user_main_info_name {

@@ -19,7 +19,7 @@ const initialState: InitialState = {
 };
 
 export const setUsers = createAsyncThunk('users/setUsers', async () => {
-  const fetchUsers = await fetch('https://reqres.in/api/users?page=2');
+  const fetchUsers = await fetch('https://reqres.in/api/users?per_page=8');
   const users = await fetchUsers.json();
   return users.data;
 });
@@ -29,6 +29,7 @@ export const singUp = createAsyncThunk(
   async (data: {
     password: FormDataEntryValue | null;
     email: FormDataEntryValue | null;
+    username: FormDataEntryValue | null;
   }) => {
     console.log(JSON.stringify(data));
     const response = await fetch('https://reqres.in/api/register', {
