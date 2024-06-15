@@ -8,7 +8,9 @@
   --accent2: #009faa;
   --bg-input: #f8f8f8;
   --shadow: #e0e3e9;
+  --fc-placeholder: #808185;
 
+  --max-radius: 16px;
   --base-radius: 10px;
   --md-radius: 8px;
   --mini-radius: 4px;
@@ -25,6 +27,8 @@ html {
 }
 
 body {
+  width: 100%;
+
   margin: 0;
   padding: 0;
   background-color: var(--bg-main);
@@ -46,4 +50,14 @@ button:hover {
 
 button:focus-visible {
   outline: 1px solid var(--accent2);
+}
+
+.sr_only {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }

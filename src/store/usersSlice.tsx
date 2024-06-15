@@ -18,11 +18,28 @@ const initialState: InitialState = {
   status: 'Idle',
 };
 
-export const setUsers = createAsyncThunk('users/getScore', async () => {
+export const setUsers = createAsyncThunk('users/setUsers', async () => {
   const fetchUsers = await fetch('https://reqres.in/api/users?page=2');
   const users = await fetchUsers.json();
   return users.data;
 });
+
+export const singUp = createAsyncThunk(
+  'users/singUp',
+  async (data: {
+    password: FormDataEntryValue | null;
+    email: FormDataEntryValue | null;
+  }) => {
+    console.log(JSON.stringify(data));
+    const response = await fetch('https://reqres.in/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    const token = await response.json();
+    console.log(token, 'TOKEN');
+  },
+);
 
 const usersSlice = createSlice({
   name: 'users',
@@ -42,6 +59,13 @@ const usersSlice = createSlice({
         state.status = 'Error occured while fetching users';
       })
       .addCase(setUsers.pending, (state) => {
+        state.status = 'Loading...';
+      })
+      .addCase(singUp.pending, (state) => {
+        state.status = 'Loading...';
+      })
+      .addCase(singUp.rejected, (state, { payload }) => {
+        console.log(payload, 'PAYLOAD');
         state.status = 'Loading...';
       });
   },
