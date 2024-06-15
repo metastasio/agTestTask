@@ -12,20 +12,22 @@ type CardItemProps = {
 export const CardItem = (props: CardItemProps) => {
   const { id, firstName, lastName, avatar } = props;
   return (
-    <li className={styles.user_card}>
-      <Link to={`user/${id}`}>
-        <img
-          className={styles.user_card_pfp}
-          src={avatar}
-          alt={`Фото пользователя ${firstName} ${lastName}`}
-          width='124'
-          height='124'
-        />
-        <p className={styles.user_card_profile_name}>
-          {firstName} {lastName}
-        </p>
-      </Link>
+    <li>
+      <Link className={styles.user_card_link} to={`user/${id}`}>
+        <div className={styles.user_card}>
+          <img
+            className={styles.user_card_pfp}
+            src={avatar}
+            alt={`Фото пользователя ${firstName} ${lastName}`}
+            width='124'
+            height='124'
+          />
+          <p className={styles.user_card_profile_name}>
+            {firstName} {lastName}
+          </p>
       <button className={styles.user_card_button}>3</button>
+        </div>
+      </Link>
     </li>
   );
 };

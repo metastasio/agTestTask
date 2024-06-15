@@ -1,6 +1,6 @@
 .user_card {
   margin-bottom: 20px;
-  padding: 0 20px 20px;
+  padding: 36px 20px 20px;
   width: 305px;
   text-align: center;
   border-radius: var(--base-radius);
@@ -9,8 +9,12 @@
   box-shadow: 0 0 5px 2px var(--shadow);
 }
 
+.user_card_link:focus-visible {
+  border: 1px solid red;
+}
+
 .user_card_pfp {
-  margin: 36px auto 16px;
+  margin: 0 auto;
   display: block;
   border-radius: 50%;
   object-fit: cover;
@@ -19,8 +23,7 @@
 }
 
 .user_card_profile_name {
-  margin: 0;
-  margin-bottom: 16px;
+  margin: 16px 0 16px;
   padding: 0;
   font-size: 20px;
   font-weight: normal;
