@@ -70,7 +70,7 @@ export const User = () => {
             src={avatar}
             alt={`Фото пользователя ${firstName} ${lastName}`}
             width='187'
-            height='197'
+            height='187'
           />
         </div>
       </section>

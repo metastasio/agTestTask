@@ -10,12 +10,12 @@ type userListProperties = {
 
 type InitialState = {
   userList: userListProperties[] | null;
-  error: string | null;
+  status: string;
 };
 
 const initialState: InitialState = {
   userList: null,
-  error: null,
+  status: 'Idle',
 };
 
 export const setUsers = createAsyncThunk('users/getScore', async () => {
@@ -35,11 +35,14 @@ const usersSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(setUsers.fulfilled, (state, { payload }) => {
-        console.log(payload, 'PAYLOAD');
         state.userList = payload;
+        state.status = 'Idle';
       })
       .addCase(setUsers.rejected, (state) => {
-        state.error = 'Error occured while fetching users';
+        state.status = 'Error occured while fetching users';
+      })
+      .addCase(setUsers.pending, (state) => {
+        state.status = 'Loading...';
       });
   },
 });
