@@ -5,6 +5,7 @@
   --main-color: #ffffff;
   --bg-secondary: #512689;
   --accent: #ff6161;
+  --accent2: #009faa;
   --bg-input: #f8f8f8;
   --shadow: #e0e3e9;
 
@@ -37,8 +38,13 @@ a {
   &:visited {
     color: var(--bg-secondary);
   }
-}
+  &:focus-visible {
+    outline: 1px solid var(--accent2);
 
 button:hover {
   cursor: pointer;
+}
+
+button:focus-visible {
+  outline: 1px solid var(--accent2);
 }
