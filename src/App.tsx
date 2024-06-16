@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { SingInPage } from './Components/SignIn/SignInPage';
-import { SignUpPage } from './Components/SignUp/SignUpPage';
+import { SignInPage } from './Components/Form/SignInPage';
+import { SignUpPage } from './Components/Form/SignUpPage';
 import { MainPage } from './Components/MainPage/MainPage';
 import { NotFound } from './Components/NotFound';
 import { User } from './Components/User/User';
@@ -10,7 +10,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/login' element={<SingInPage />}></Route>
+          <Route path='/login' element={<SignInPage />}></Route>
           <Route path='/register' element={<SignUpPage />}></Route>
           <Route path='/' element={<MainPage />}></Route>
           <Route path='*' element={<NotFound />}></Route>

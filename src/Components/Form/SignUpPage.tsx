@@ -1,35 +1,24 @@
+import { Link } from 'react-router-dom';
 import { FormEventHandler, useState } from 'react';
 import { useAppDispatch } from '../../store/hooks';
 import { singUp } from '../../store/usersSlice';
-import { InputItem } from '../Form/InputItem';
+import { InputItem } from './InputItem';
+import { InputPassword } from './InputPassword';
+import { FormButton } from './FormButton';
 
-import styles from './signuppage.module.css';
-import { InputPassword } from '../Form/InputPassword';
+import styles from './formstyles.module.css';
 
 export const SignUpPage = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  // const [typePassword, toggleTypePassword] = useState({
-  //   password: 'password',
-  //   confirmPassword: 'password',
-  // });
   const dispatch = useAppDispatch();
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     dispatch(singUp({ email, password, username: name }));
   };
-
-  // const togglePassword = (name: 'password' | 'confirmPassword') => {
-  //   toggleTypePassword((prev) => {
-  //     return {
-  //       ...prev,
-  //       [name]: prev[name] === 'password' ? 'text' : 'password',
-  //     };
-  //   });
-  // };
 
   return (
     <form className={styles.form_register} onSubmit={handleSubmit}>
@@ -71,7 +60,11 @@ export const SignUpPage = () => {
         handleChange={setPasswordConfirm}
       />
       <p className={styles.form_input_error}>{}</p>
-      <button className={styles.form_input_submit}>Зарегистрироваться</button>
+      <FormButton content='Зарегистрироваться'></FormButton>
+
+      <p className={styles.form_input_redirect}>
+        Есть аккаунт? <Link to={'/login'}>Войти</Link>
+      </p>
     </form>
   );
 };

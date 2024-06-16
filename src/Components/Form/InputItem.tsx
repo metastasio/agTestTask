@@ -1,4 +1,4 @@
-import styles from './inputitem.module.css';
+import styles from './formstyles.module.css';
 
 type InputProps = {
   label: string;

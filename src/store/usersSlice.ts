@@ -41,6 +41,22 @@ export const singUp = createAsyncThunk(
   },
 );
 
+export const singIn = createAsyncThunk(
+  'users/singIn',
+  async (data: {
+    password: FormDataEntryValue | null;
+    email: FormDataEntryValue | null;
+  }) => {
+    const response = await fetch('https://reqres.in/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    const token = await response.json();
+    console.log(token, 'TOKEN');
+  },
+);
+
 const usersSlice = createSlice({
   name: 'users',
   initialState,
@@ -64,8 +80,7 @@ const usersSlice = createSlice({
       .addCase(singUp.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(singUp.rejected, (state, { payload }) => {
-        console.log(payload, 'PAYLOAD');
+      .addCase(singIn.pending, (state) => {
         state.status = 'loading';
       });
   },
