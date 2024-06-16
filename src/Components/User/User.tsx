@@ -9,7 +9,7 @@ export const User = () => {
   const navigate = useNavigate();
 
   if (!currentUser) {
-    return <Navigate to={'/*'} />;
+    return <Navigate to={'/404'} />;
   }
 
   const { first_name, last_name, avatar, email } = currentUser;
