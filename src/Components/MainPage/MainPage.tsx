@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { CardItem } from './CardItem';
+import { CardItem } from './CardItem/CardItem';
 import { setUsers } from '../../store/usersSlice';
 import { useNavigate } from 'react-router-dom';
 

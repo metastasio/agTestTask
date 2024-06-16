@@ -1,5 +1,6 @@
 import { useFormContext } from 'react-hook-form';
-import styles from './formstyles.module.css';
+
+import styles from './inputelements.module.css';
 
 type InputProps = {
   label: string;

@@ -1,7 +1,7 @@
 import { useState } from 'react';
-
-import styles from './formstyles.module.css';
 import { useFormContext } from 'react-hook-form';
+
+import styles from './inputelements.module.css';
 
 type InputPasswordProps = {
   label: string;

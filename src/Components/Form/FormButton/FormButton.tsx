@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 
-import styles from './formstyles.module.css';
+import styles from './formbutton.module.css';
 
 type FormButtonProps = React.PropsWithChildren & {
   status: string;

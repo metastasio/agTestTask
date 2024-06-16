@@ -2,9 +2,9 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { signUp } from '../../store/usersSlice';
-import { InputItem } from './InputItem';
-import { InputPassword } from './InputPassword';
-import { FormButton } from './FormButton';
+import { InputItem } from './InputElements/InputItem';
+import { InputPassword } from './InputElements/InputPassword';
+import { FormButton } from './FormButton/FormButton';
 import { InputFieldsRegister } from './types';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -13,9 +13,7 @@ import styles from './formstyles.module.css';
 
 const schema = yup
   .object({
-    name: yup
-      .string()
-      .trim(),
+    name: yup.string().trim(),
     email: yup
       .string()
       .email('Неверный формат email')

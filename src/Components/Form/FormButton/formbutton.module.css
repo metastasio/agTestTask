@@ -1,0 +1,17 @@
+.form_input_submit {
+  margin: 0;
+  padding: 14px 0;
+  width: 100%;
+  border: none;
+  background-color: var(--bg-secondary);
+  border-radius: var(--md-radius);
+  color: var(--main-color);
+  font-size: 16px;
+  &:hover {
+    background-color: var(--accent2);
+  }
+}
+
+.pending {
+  pointer-events: none;
+}
