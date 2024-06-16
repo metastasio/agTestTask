@@ -62,9 +62,9 @@ export const signIn = createAsyncThunk(
         body: JSON.stringify(data),
       });
       if (response.ok) {
-        const token = await response.json();
-        if (token.token) {
-          localStorage.setItem('token', token.token);
+        const { token } = await response.json();
+        if (token) {
+          localStorage.setItem('token', token);
         }
         return token;
       } else {
