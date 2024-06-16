@@ -76,3 +76,7 @@
     background-color: var(--accent2);
   }
 }
+
+.pending {
+  pointer-events: none;
+}

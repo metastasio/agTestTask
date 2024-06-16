@@ -1,3 +1,6 @@
+import cn from 'classnames';
+import { useAppSelector } from '../../store/hooks';
+
 import styles from './formstyles.module.css';
 
 type FormButtonProps = {
@@ -5,5 +8,15 @@ type FormButtonProps = {
 };
 
 export const FormButton = (props: FormButtonProps) => {
-  return <button className={styles.form_input_submit}>{props.content}</button>;
+  const { status } = useAppSelector((state) => state.users);
+
+  return (
+    <button
+      className={cn(styles.form_input_submit, {
+        [styles.pending]: status === 'pending',
+      })}
+    >
+      {props.content}
+    </button>
+  );
 };
