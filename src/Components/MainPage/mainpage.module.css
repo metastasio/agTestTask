@@ -5,6 +5,11 @@
   color: var(--main-color);
 }
 
+.wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
 .header_nav {
   display: flex;
   flex-flow: row nowrap;
@@ -36,6 +41,11 @@
   margin: 0;
   padding: 0;
   font-size: 16px;
+}
+
+.main_wrapper {
+  max-width: 1460px;
+  margin: 0 auto;
 }
 
 .userlist {
@@ -99,7 +109,6 @@
   }
 
   .header_description {
-    margin: 0 250px;
     font-size: 20px;
   }
 }
