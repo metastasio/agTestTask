@@ -15,7 +15,7 @@ type InitialState = {
 
 const initialState: InitialState = {
   userList: null,
-  status: 'Idle',
+  status: 'idle',
 };
 
 export const setUsers = createAsyncThunk('users/setUsers', async () => {
@@ -31,7 +31,6 @@ export const singUp = createAsyncThunk(
     email: FormDataEntryValue | null;
     username: FormDataEntryValue | null;
   }) => {
-    console.log(JSON.stringify(data));
     const response = await fetch('https://reqres.in/api/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -54,20 +53,20 @@ const usersSlice = createSlice({
     builder
       .addCase(setUsers.fulfilled, (state, { payload }) => {
         state.userList = payload;
-        state.status = 'Idle';
+        state.status = 'idle';
       })
       .addCase(setUsers.rejected, (state) => {
-        state.status = 'Error occured while fetching users';
+        state.status = 'error';
       })
       .addCase(setUsers.pending, (state) => {
-        state.status = 'Loading...';
+        state.status = 'loading';
       })
       .addCase(singUp.pending, (state) => {
-        state.status = 'Loading...';
+        state.status = 'loading';
       })
       .addCase(singUp.rejected, (state, { payload }) => {
         console.log(payload, 'PAYLOAD');
-        state.status = 'Loading...';
+        state.status = 'loading';
       });
   },
 });

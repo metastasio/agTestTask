@@ -1,20 +1,18 @@
-import { useAppSelector } from '../../store/hooks';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { selectCurrentUser, useAppSelector } from '../../store/hooks';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import styles from './user.module.css';
 
 export const User = () => {
-  const { userList } = useAppSelector((state) => state.users);
-  const { pathname } = useLocation();
-  const currentUserId = Number(pathname.split('/').slice(-1)[0]);
-  // let params = useParams();
-  // console.log(params);
-  const currentUser = userList?.filter((user) => user.id === currentUserId);
-  const { first_name } = currentUser?.[0];
-  const firstName = currentUser?.[0].first_name;
-  const lastName = currentUser?.[0].last_name;
-  const avatar = currentUser?.[0].avatar;
-  const email = currentUser?.[0].email;
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const currentUser = useAppSelector(selectCurrentUser(id));
+
+  if (!currentUser) {
+    return navigate('*');
+  }
+  
+  const { first_name, last_name, avatar, email } = currentUser;
 
   return (
     <>
@@ -61,7 +59,7 @@ export const User = () => {
         <div className={styles.user_main_info}>
           <div className={styles.user_main_info_name}>
             <h2 className={styles.user_name}>
-              {firstName} {lastName}
+              {first_name} {last_name}
             </h2>
             <h3 className={styles.user_status}>Партнер</h3>
           </div>
@@ -69,7 +67,7 @@ export const User = () => {
           <img
             className={styles.user_pfp}
             src={avatar}
-            alt={`Фото пользователя ${firstName} ${lastName}`}
+            alt={`Фото пользователя ${first_name} ${last_name}`}
             width='187'
             height='187'
           />
