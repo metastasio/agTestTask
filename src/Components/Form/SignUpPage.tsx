@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FormEventHandler, useState } from 'react';
 import { useAppDispatch } from '../../store/hooks';
 import { singUp } from '../../store/usersSlice';
@@ -13,11 +13,16 @@ export const SignUpPage = () => {
   const [email, setEmail] = useState('eve.holt@reqres.in');
   const [password, setPassword] = useState('pistol');
   const [passwordConfirm, setPasswordConfirm] = useState('pistol');
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     dispatch(singUp({ email, password, username: name }));
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/');
+    }
   };
 
   return (

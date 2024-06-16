@@ -14,6 +14,10 @@ export const User = () => {
 
   const { first_name, last_name, avatar, email } = currentUser;
 
+  const logOut = () => {
+    localStorage.clear();
+  };
+
   return (
     <>
       <section className={styles.user_profile}>
@@ -38,7 +42,7 @@ export const User = () => {
             </Link>
           </div>
 
-          <button className={styles.user_nav_button}>
+          <button className={styles.user_nav_button} onClick={logOut}>
             <span className={styles.user_nav_button_text}>Выход</span>
             <svg
               className={styles.user_nav_button_svg}

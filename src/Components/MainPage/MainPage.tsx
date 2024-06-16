@@ -9,6 +9,10 @@ export const MainPage = () => {
   const { userList } = useAppSelector((state) => state.users);
   const dispatch = useAppDispatch();
 
+  const logOut = () => {
+    localStorage.clear();
+  };
+
   useEffect(() => {
     dispatch(setUsers());
   }, [dispatch]);
@@ -17,7 +21,7 @@ export const MainPage = () => {
     <>
       <header className={styles.header}>
         <nav className={styles.header_nav}>
-          <button className={styles.header_logout}>
+          <button className={styles.header_logout} onClick={logOut}>
             <span className={styles.header_logout_text}>Выход</span>
             <svg
               className={styles.header_logout_svg}

@@ -37,7 +37,9 @@ export const singUp = createAsyncThunk(
       body: JSON.stringify(data),
     });
     const token = await response.json();
-    console.log(token, 'TOKEN');
+    if (token.token) {
+      localStorage.setItem('token', token);
+    }
   },
 );
 
@@ -53,7 +55,9 @@ export const singIn = createAsyncThunk(
       body: JSON.stringify(data),
     });
     const token = await response.json();
-    console.log(token, 'TOKEN');
+    if (token.token) {
+      localStorage.setItem('token', token);
+    }
   },
 );
 

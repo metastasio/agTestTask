@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FormEventHandler, useState } from 'react';
 import { useAppDispatch } from '../../store/hooks';
 import { singIn } from '../../store/usersSlice';
@@ -11,11 +11,16 @@ import styles from './formstyles.module.css';
 export const SignInPage = () => {
   const [email, setEmail] = useState('eve.holt@reqres.in');
   const [password, setPassword] = useState('cityslicka');
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     dispatch(singIn({ email, password }));
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/');
+    }
   };
 
   return (
