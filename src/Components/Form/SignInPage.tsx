@@ -9,8 +9,8 @@ import { FormButton } from './FormButton';
 import styles from './formstyles.module.css';
 
 export const SignInPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('eve.holt@reqres.in');
+  const [password, setPassword] = useState('cityslicka');
   const dispatch = useAppDispatch();
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
@@ -26,7 +26,7 @@ export const SignInPage = () => {
         label='E-mail'
         name='email'
         value={email}
-        placeholder='Введите email'
+        placeholder='eve.holt@reqres.in'
         type='text'
         handleChange={setEmail}
       />
@@ -36,7 +36,7 @@ export const SignInPage = () => {
         label='Пароль'
         name='password'
         value={password}
-        placeholder='Введите пароль'
+        placeholder='cityslicka'
         handleChange={setPassword}
       />
       <p className={styles.form_input_error}>{}</p>
