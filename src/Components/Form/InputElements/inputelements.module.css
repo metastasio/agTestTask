@@ -28,7 +28,7 @@
   border: none;
   background-color: transparent;
   position: absolute;
-  top: 25%;
+  top: 20%;
   right: 0;
 }
 
@@ -43,4 +43,9 @@
 
 .form_input_redirect {
   text-align: center;
+}
+
+.form_input_show_psswd_img {
+  width: 24px;
+  height: 24px;
 }
