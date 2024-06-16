@@ -1,20 +1,22 @@
 import { selectCurrentUser, useAppSelector } from '../../store/hooks';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 
 import styles from './user.module.css';
 
 export const User = () => {
   const { id } = useParams();
   const currentUser = useAppSelector(selectCurrentUser(Number(id)));
+  const navigate = useNavigate();
 
   if (!currentUser) {
-    return <Navigate to={'/*'}/>;
+    return <Navigate to={'/*'} />;
   }
 
   const { first_name, last_name, avatar, email } = currentUser;
 
   const logOut = () => {
     localStorage.clear();
+    navigate('/login');
   };
 
   return (

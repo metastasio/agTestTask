@@ -2,15 +2,18 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { CardItem } from './CardItem';
 import { setUsers } from '../../store/usersSlice';
+import { useNavigate } from 'react-router-dom';
 
 import styles from './mainpage.module.css';
 
 export const MainPage = () => {
   const { userList } = useAppSelector((state) => state.users);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const logOut = () => {
     localStorage.clear();
+    navigate('/login');
   };
 
   useEffect(() => {
