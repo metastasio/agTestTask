@@ -16,32 +16,6 @@
   font-weight: normal;
 }
 
-.form_label {
-  display: block;
-  margin: 0;
-  padding: 0;
-  margin-bottom: 8px;
-}
-
-.form_input {
-  margin: 0;
-  margin-bottom: 4px;
-  padding: 12px 8px;
-  height: 48px;
-  width: 100%;
-  border: none;
-  border-radius: var(--md-radius);
-  background-color: var(--bg-input);
-  &::placeholder {
-    font-size: 14px;
-    color: var(--fc-placeholder);
-  }
-}
-
-.form_input_wrapper {
-  position: relative;
-}
-
 .form_input_error {
   margin: 0;
   margin-bottom: 16px;
@@ -49,14 +23,6 @@
   height: 10px;
   font-size: 10px;
   color: var(--accent);
-}
-
-.form_input_show_psswd {
-  border: none;
-  background-color: transparent;
-  position: absolute;
-  top: 25%;
-  right: 0;
 }
 
 .form_input_submit {
