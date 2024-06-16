@@ -7,10 +7,13 @@
   -webkit-box-shadow: 0 0 5px 2px var(--shadow);
   -moz-box-shadow: 0 0 5px 2px var(--shadow);
   box-shadow: 0 0 5px 2px var(--shadow);
+  &:hover {
+    outline: 1px solid var(--accent2);
+  }
 }
 
 .user_card_link:focus-visible {
-  border: 1px solid red;
+  border: 1px solid var(--accent2);
 }
 
 .user_card_pfp {

@@ -40,6 +40,9 @@ a {
   &:visited {
     color: var(--bg-secondary);
   }
+  &:hover {
+    color: var(--accent2);
+  }
 }
 
 button:hover {
