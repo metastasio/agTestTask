@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -26,7 +27,9 @@ export const InputPassword = (props: InputPasswordProps) => {
       </label>
       <div className={styles.form_input_wrapper}>
         <input
-          className={styles.form_input}
+          className={cn(styles.form_input, {
+            [styles.error]: error,
+          })}
           id={name}
           type={typePassword}
           placeholder={placeholder}
@@ -52,7 +55,13 @@ export const InputPassword = (props: InputPasswordProps) => {
           )}
         </button>
       </div>
-      {error && <p role='alert'>{error}</p>}
+      <div className={styles.input_error_wrapper}>
+        {error && (
+          <p className={styles.input_error} role='alert'>
+            {error}
+          </p>
+        )}
+      </div>
     </>
   );
 };

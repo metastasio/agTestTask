@@ -32,11 +32,11 @@
   right: 0;
 }
 
-.form_input_error {
+.input_error_wrapper {
   margin: 0;
   margin-bottom: 16px;
   padding: 0;
-  height: 10px;
+  height: 16px;
   font-size: 10px;
   color: var(--accent);
 }
@@ -48,4 +48,19 @@
 .form_input_show_psswd_img {
   width: 24px;
   height: 24px;
+}
+
+.input_error {
+  margin: 0;
+  padding: 0;
+}
+
+.error {
+  border: 1px solid var(--accent);
+  &:focus-visible {
+    border: 1px solid var(--accent);
+  }
+  &:focus {
+    border: 1px solid var(--accent);
+  }
 }

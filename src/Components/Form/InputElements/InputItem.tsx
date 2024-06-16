@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import { useFormContext } from 'react-hook-form';
 
 import styles from './inputelements.module.css';
@@ -20,13 +21,21 @@ export const InputItem = (props: InputProps) => {
         {label}
       </label>
       <input
-        className={styles.form_input}
+        className={cn(styles.form_input, {
+          [styles.error]: error,
+        })}
         id={name}
         type={type}
         placeholder={placeholder}
         {...register(name)}
       />
-      {error && <p role='alert'>{error}</p>}
+      <div className={styles.input_error_wrapper}>
+        {error && (
+          <p className={styles.input_error} role='alert'>
+            {error}
+          </p>
+        )}
+      </div>
     </>
   );
 };
