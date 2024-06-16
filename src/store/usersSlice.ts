@@ -10,12 +10,16 @@ type userListProperties = {
 
 type InitialState = {
   userList: userListProperties[] | null;
-  status: string;
+  statusSignIn: string;
+  statusSignUp: string;
+  statusSetUsers: string;
 };
 
 const initialState: InitialState = {
   userList: null,
-  status: 'idle',
+  statusSignIn: 'idle',
+  statusSignUp: 'idle',
+  statusSetUsers: 'idle',
 };
 
 export const setUsers = createAsyncThunk('users/setUsers', async () => {
@@ -24,8 +28,8 @@ export const setUsers = createAsyncThunk('users/setUsers', async () => {
   return users.data;
 });
 
-export const singUp = createAsyncThunk(
-  'users/singUp',
+export const signUp = createAsyncThunk(
+  'users/signUp',
   async (data: {
     password: FormDataEntryValue | null;
     email: FormDataEntryValue | null;
@@ -42,8 +46,8 @@ export const singUp = createAsyncThunk(
   },
 );
 
-export const singIn = createAsyncThunk(
-  'users/singIn',
+export const signIn = createAsyncThunk(
+  'users/signIn',
   async (
     data: {
       password: FormDataEntryValue | null;
@@ -84,22 +88,22 @@ const usersSlice = createSlice({
     builder
       .addCase(setUsers.fulfilled, (state, { payload }) => {
         state.userList = payload;
-        state.status = 'idle';
+        state.statusSetUsers = 'idle';
       })
       .addCase(setUsers.rejected, (state) => {
-        state.status = 'error';
+        state.statusSetUsers = 'error';
       })
       .addCase(setUsers.pending, (state) => {
-        state.status = 'loading';
+        state.statusSetUsers = 'loading';
       })
-      .addCase(singUp.pending, (state) => {
-        state.status = 'loading';
+      .addCase(signUp.pending, (state) => {
+        state.statusSignUp = 'loading';
       })
-      .addCase(singIn.pending, (state) => {
-        state.status = 'loading';
+      .addCase(signIn.pending, (state) => {
+        state.statusSignIn = 'loading';
       })
-      .addCase(singIn.rejected, (state) => {
-        state.status = 'error';
+      .addCase(signIn.rejected, (state) => {
+        state.statusSignIn = 'error';
       });
   },
 });

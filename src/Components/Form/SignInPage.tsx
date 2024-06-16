@@ -1,7 +1,7 @@
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { singIn } from '../../store/usersSlice';
+import { signIn } from '../../store/usersSlice';
 import { InputItem } from './InputItem';
 import { InputPassword } from './InputPassword';
 import { FormButton } from './FormButton';
@@ -30,7 +30,7 @@ const rulesPassword = {
 };
 
 export const SignInPage = () => {
-  const { status } = useAppSelector((state) => state.users);
+  const { statusSignIn } = useAppSelector((state) => state.users);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -46,7 +46,7 @@ export const SignInPage = () => {
   } = methods;
 
   const onSubmit: SubmitHandler<InputFields> = (data) => {
-    dispatch(singIn(data))
+    dispatch(signIn(data))
       .unwrap()
       .then(() => navigate('/'))
       .catch(console.log);
@@ -77,7 +77,7 @@ export const SignInPage = () => {
           error={errors.password?.message}
         />
 
-        <FormButton status={status}>Войти</FormButton>
+        <FormButton status={statusSignIn}>Войти</FormButton>
 
         <p className={styles.form_input_redirect}>
           Нет аккаунта? <Link to={'/register'}>Зарегистрироваться</Link>

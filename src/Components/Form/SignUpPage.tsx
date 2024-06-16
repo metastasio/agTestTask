@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { FormEventHandler, useState } from 'react';
 import { useAppDispatch } from '../../store/hooks';
-import { singUp } from '../../store/usersSlice';
+import { signUp } from '../../store/usersSlice';
 import { InputItem } from './InputItem';
 import { InputPassword } from './InputPassword';
 import { FormButton } from './FormButton';
@@ -18,7 +18,7 @@ export const SignUpPage = () => {
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    dispatch(singUp({ email, password }));
+    dispatch(signUp({ email, password }));
     const token = localStorage.getItem('token');
     if (token) {
       navigate('/');
