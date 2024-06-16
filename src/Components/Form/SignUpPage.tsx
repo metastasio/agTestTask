@@ -7,30 +7,9 @@ import { InputPassword } from './InputElements/InputPassword';
 import { FormButton } from './FormButton/FormButton';
 import { InputFieldsRegister } from './types';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { signUpSchema } from '../../services/yupSchemas';
 
 import styles from './formstyles.module.css';
-
-const schema = yup
-  .object({
-    name: yup.string().trim(),
-    email: yup
-      .string()
-      .email('Неверный формат email')
-      .required('Пожалуйста, укажите email'),
-    password: yup
-      .string()
-      .required('Пожалуйста, укажите пароль')
-      .min(6, 'Пароль не должен быть меньше 6 символов')
-      .max(20, 'Пароль не должен превышать 20 символов')
-      .trim(),
-    confirmPassword: yup
-      .string()
-      .required('required')
-      .oneOf([yup.ref('password')], 'Пароли должны совпадать')
-      .trim(),
-  })
-  .required();
 
 export const SignUpPage = () => {
   const { statusSignUp } = useAppSelector((state) => state.users);
@@ -38,7 +17,7 @@ export const SignUpPage = () => {
   const dispatch = useAppDispatch();
 
   const methods = useForm<InputFieldsRegister>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(signUpSchema),
     defaultValues: {
       email: 'eve.holt@reqres.in',
       password: 'pistol',
