@@ -1,15 +1,14 @@
 import { selectCurrentUser, useAppSelector } from '../../store/hooks';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 
 import styles from './user.module.css';
 
 export const User = () => {
-  const navigate = useNavigate();
   const { id } = useParams();
   const currentUser = useAppSelector(selectCurrentUser(Number(id)));
 
   if (!currentUser) {
-    return navigate('*');
+    return <Navigate to={'/*'}/>;
   }
 
   const { first_name, last_name, avatar, email } = currentUser;

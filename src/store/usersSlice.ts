@@ -29,7 +29,6 @@ export const singUp = createAsyncThunk(
   async (data: {
     password: FormDataEntryValue | null;
     email: FormDataEntryValue | null;
-    username: FormDataEntryValue | null;
   }) => {
     const response = await fetch('https://reqres.in/api/register', {
       method: 'POST',

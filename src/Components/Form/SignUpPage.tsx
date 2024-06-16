@@ -18,7 +18,7 @@ export const SignUpPage = () => {
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    dispatch(singUp({ email, password, username: name }));
+    dispatch(singUp({ email, password }));
     const token = localStorage.getItem('token');
     if (token) {
       navigate('/');

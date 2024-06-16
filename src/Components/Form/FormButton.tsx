@@ -1,22 +1,20 @@
+import React from 'react';
 import cn from 'classnames';
-import { useAppSelector } from '../../store/hooks';
 
 import styles from './formstyles.module.css';
 
-type FormButtonProps = {
-  content: string;
+type FormButtonProps = React.PropsWithChildren & {
+  status: string;
 };
 
 export const FormButton = (props: FormButtonProps) => {
-  const { status } = useAppSelector((state) => state.users);
-
   return (
     <button
       className={cn(styles.form_input_submit, {
-        [styles.pending]: status === 'pending',
+        [styles.pending]: props.status === 'pending',
       })}
     >
-      {props.content}
+      {props.children}
     </button>
   );
 };
