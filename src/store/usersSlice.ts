@@ -37,25 +37,37 @@ export const singUp = createAsyncThunk(
     });
     const token = await response.json();
     if (token.token) {
-      localStorage.setItem('token', token);
+      localStorage.setItem('token', token.token);
     }
   },
 );
 
 export const singIn = createAsyncThunk(
   'users/singIn',
-  async (data: {
-    password: FormDataEntryValue | null;
-    email: FormDataEntryValue | null;
-  }) => {
-    const response = await fetch('https://reqres.in/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    const token = await response.json();
-    if (token.token) {
-      localStorage.setItem('token', token);
+  async (
+    data: {
+      password: FormDataEntryValue | null;
+      email: FormDataEntryValue | null;
+    },
+    { rejectWithValue },
+  ) => {
+    try {
+      const response = await fetch('https://reqres.in/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        const token = await response.json();
+        if (token.token) {
+          localStorage.setItem('token', token.token);
+        }
+        return token;
+      } else {
+        return rejectWithValue(response.status);
+      }
+    } catch (error) {
+      return rejectWithValue(error);
     }
   },
 );
@@ -85,6 +97,9 @@ const usersSlice = createSlice({
       })
       .addCase(singIn.pending, (state) => {
         state.status = 'loading';
+      })
+      .addCase(singIn.rejected, (state) => {
+        state.status = 'error';
       });
   },
 });
