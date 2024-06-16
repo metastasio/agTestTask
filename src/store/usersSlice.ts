@@ -30,18 +30,30 @@ export const setUsers = createAsyncThunk('users/setUsers', async () => {
 
 export const signUp = createAsyncThunk(
   'users/signUp',
-  async (data: {
-    password: FormDataEntryValue | null;
-    email: FormDataEntryValue | null;
-  }) => {
-    const response = await fetch('https://reqres.in/api/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    const token = await response.json();
-    if (token.token) {
-      localStorage.setItem('token', token.token);
+  async (
+    data: {
+      password: FormDataEntryValue | null;
+      email: FormDataEntryValue | null;
+    },
+    { rejectWithValue },
+  ) => {
+    try {
+      const response = await fetch('https://reqres.in/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        const { token } = await response.json();
+        if (token) {
+          localStorage.setItem('token', token);
+        }
+        return token;
+      } else {
+        return rejectWithValue(response.status);
+      }
+    } catch (error) {
+      return rejectWithValue(error);
     }
   },
 );

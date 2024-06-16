@@ -1,4 +1,4 @@
-import { RegisterOptions, useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import styles from './formstyles.module.css';
 
 type InputProps = {
@@ -6,12 +6,11 @@ type InputProps = {
   name: string;
   placeholder: string;
   type: string;
-  options?: RegisterOptions;
   error?: string;
 };
 
 export const InputItem = (props: InputProps) => {
-  const { label, name, placeholder, type, options, error } = props;
+  const { label, name, placeholder, type, error } = props;
   const { register } = useFormContext();
 
   return (
@@ -24,7 +23,7 @@ export const InputItem = (props: InputProps) => {
         id={name}
         type={type}
         placeholder={placeholder}
-        {...register(name, options)}
+        {...register(name)}
       />
       {error && <p role='alert'>{error}</p>}
     </>

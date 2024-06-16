@@ -5,52 +5,42 @@ import { signUp } from '../../store/usersSlice';
 import { InputItem } from './InputItem';
 import { InputPassword } from './InputPassword';
 import { FormButton } from './FormButton';
-import { InputFields } from './types';
+import { InputFieldsRegister } from './types';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 import styles from './formstyles.module.css';
 
-const rulesName = {
-  required: 'Пожалуйста, укажите имя',
-  minLength: {
-    value: 3,
-    message: 'Не должно быть меньше двух символов',
-  },
-  maxLength: {
-    value: 20,
-    message: 'Не должно превышать 20 символов',
-  },
-};
-
-const rulesEmail = {
-  required: 'Пожалуйста, укажите email',
-  pattern: {
-    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-    message: 'Неверный формат email',
-  },
-};
-
-const rulesPassword = {
-  required: 'Пожалуйста, укажите пароль',
-  minLength: {
-    value: 3,
-    message: 'Слишком короткий пароль',
-  },
-  maxLength: {
-    value: 20,
-    message: 'Пароль не должен превышать 20 символов',
-  },
-};
+const schema = yup
+  .object({
+    name: yup
+      .string()
+      .trim(),
+    email: yup
+      .string()
+      .email('Неверный формат email')
+      .required('Пожалуйста, укажите email'),
+    password: yup
+      .string()
+      .required('Пожалуйста, укажите пароль')
+      .min(6, 'Пароль не должен быть меньше 6 символов')
+      .max(20, 'Пароль не должен превышать 20 символов')
+      .trim(),
+    confirmPassword: yup
+      .string()
+      .required('required')
+      .oneOf([yup.ref('password')], 'Пароли должны совпадать')
+      .trim(),
+  })
+  .required();
 
 export const SignUpPage = () => {
-  // const [name, setName] = useState('');
-  // const [email, setEmail] = useState('eve.holt@reqres.in');
-  // const [password, setPassword] = useState('pistol');
-  // const [passwordConfirm, setPasswordConfirm] = useState('pistol');
   const { statusSignUp } = useAppSelector((state) => state.users);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const methods = useForm<InputFields>({
+  const methods = useForm<InputFieldsRegister>({
+    resolver: yupResolver(schema),
     defaultValues: {
       email: 'eve.holt@reqres.in',
       password: 'pistol',
@@ -62,7 +52,7 @@ export const SignUpPage = () => {
     formState: { errors },
   } = methods;
 
-  const onSubmit: SubmitHandler<InputFields> = (data) => {
+  const onSubmit: SubmitHandler<InputFieldsRegister> = (data) => {
     dispatch(signUp(data))
       .unwrap()
       .then(() => navigate('/'))
@@ -81,7 +71,6 @@ export const SignUpPage = () => {
           name='name'
           placeholder='Введите имя'
           type='text'
-          options={rulesName}
           error={errors.name?.message}
         />
 
@@ -90,7 +79,6 @@ export const SignUpPage = () => {
           name='email'
           placeholder='eve.holt@reqres.in'
           type='text'
-          options={rulesEmail}
           error={errors.email?.message}
         />
 
@@ -98,7 +86,6 @@ export const SignUpPage = () => {
           label='Пароль'
           name='password'
           placeholder='pistol'
-          options={rulesPassword}
           error={errors.password?.message}
         />
 
@@ -106,7 +93,6 @@ export const SignUpPage = () => {
           label='Подтвердите пароль'
           name='confirmPassword'
           placeholder='pistol'
-          options={rulesPassword}
           error={errors.password?.message}
         />
 

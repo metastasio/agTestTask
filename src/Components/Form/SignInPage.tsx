@@ -5,36 +5,34 @@ import { signIn } from '../../store/usersSlice';
 import { InputItem } from './InputItem';
 import { InputPassword } from './InputPassword';
 import { FormButton } from './FormButton';
-import { InputFields } from './types';
+import { InputFieldsLogIn } from './types';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 import styles from './formstyles.module.css';
 
-const rulesEmail = {
-  required: 'Пожалуйста, укажите email',
-  pattern: {
-    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-    message: 'Неверный формат email',
-  },
-};
-
-const rulesPassword = {
-  required: 'Пожалуйста, укажите пароль',
-  minLength: {
-    value: 3,
-    message: 'Слишком короткий пароль',
-  },
-  maxLength: {
-    value: 20,
-    message: 'Пароль не должен превышать 20 символов',
-  },
-};
+const schema = yup
+  .object({
+    email: yup
+      .string()
+      .email('Неверный формат email')
+      .required('Пожалуйста, укажите email'),
+    password: yup
+      .string()
+      .required('Пожалуйста, укажите пароль')
+      .min(6, 'Пароль не должен быть меньше 6 символов')
+      .max(20, 'Пароль не должен превышать 20 символов')
+      .trim(),
+  })
+  .required();
 
 export const SignInPage = () => {
   const { statusSignIn } = useAppSelector((state) => state.users);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const methods = useForm<InputFields>({
+  const methods = useForm<InputFieldsLogIn>({
+    resolver: yupResolver(schema),
     defaultValues: {
       email: 'eve.holt@reqres.in',
       password: 'cityslicka',
@@ -45,7 +43,7 @@ export const SignInPage = () => {
     formState: { errors },
   } = methods;
 
-  const onSubmit: SubmitHandler<InputFields> = (data) => {
+  const onSubmit: SubmitHandler<InputFieldsLogIn> = (data) => {
     dispatch(signIn(data))
       .unwrap()
       .then(() => navigate('/'))
@@ -65,7 +63,6 @@ export const SignInPage = () => {
           name='email'
           placeholder='eve.holt@reqres.in'
           type='text'
-          options={rulesEmail}
           error={errors.email?.message}
         />
 
@@ -73,7 +70,6 @@ export const SignInPage = () => {
           label='Пароль'
           name='password'
           placeholder='cityslicka'
-          options={rulesPassword}
           error={errors.password?.message}
         />
 

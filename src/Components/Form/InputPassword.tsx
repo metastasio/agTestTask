@@ -1,18 +1,17 @@
 import { useState } from 'react';
 
 import styles from './formstyles.module.css';
-import { RegisterOptions, useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
 type InputPasswordProps = {
   label: string;
   name: string;
   placeholder: string;
-  options?: RegisterOptions;
   error?: string;
 };
 
 export const InputPassword = (props: InputPasswordProps) => {
-  const { label, name, placeholder, error, options } = props;
+  const { label, name, placeholder, error } = props;
   const [typePassword, toggleTypePassword] = useState('password');
   const { register } = useFormContext();
 
@@ -31,7 +30,7 @@ export const InputPassword = (props: InputPasswordProps) => {
           id={name}
           type={typePassword}
           placeholder={placeholder}
-          {...register(name, options)}
+          {...register(name)}
         />
         <button
           type='button'
