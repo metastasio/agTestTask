@@ -6,12 +6,12 @@ import styles from './user.module.css';
 export const User = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const currentUser = useAppSelector(selectCurrentUser(id));
+  const currentUser = useAppSelector(selectCurrentUser(Number(id)));
 
   if (!currentUser) {
     return navigate('*');
   }
-  
+
   const { first_name, last_name, avatar, email } = currentUser;
 
   return (

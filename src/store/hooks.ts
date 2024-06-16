@@ -7,8 +7,9 @@ export const useAppSelector = useSelector.withTypes<RootState>();
 export const useAppStore = useStore.withTypes<AppStore>();
 export const createAppSelector = createSelector.withTypes<RootState>();
 
-// export const selectUsers = (state) => state.modal;
-export const selectCurrentUser = (currentId: string | undefined) =>
-  createAppSelector([(state) => state.users.userList], (users) =>
-    users?.find(({ id }) => id === Number(currentId)),
+export const selectUsers = (state: RootState) => state.users.userList;
+
+export const selectCurrentUser = (currentId: number | undefined) =>
+  createAppSelector(selectUsers, (users) =>
+    users?.find(({ id }) => id === currentId),
   );
