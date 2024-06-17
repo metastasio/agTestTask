@@ -25,19 +25,6 @@
   }
 }
 
-.user_nav_button {
-  margin: 0;
-  padding: 0;
-  border: none;
-  background-color: transparent;
-  width: 40px;
-  height: 40px;
-}
-
-.user_nav_button_text {
-  display: none;
-}
-
 .user_main_info {
   max-width: 1280px;
   margin: 0 auto;
@@ -103,8 +90,7 @@
     margin: 0 150px;
   }
 
-  .user_nav_link,
-  .user_nav_button_svg {
+  .user_nav_link {
     display: none;
   }
 
@@ -116,8 +102,8 @@
     border-radius: var(--md-radius);
     &:hover {
       cursor: pointer;
-      color: var(--shadow);
-      border: 1px solid var(--shadow);
+      color: var(--accent2);
+      border: 1px solid var(--accent2);
     }
   }
 
@@ -128,25 +114,6 @@
     }
     &:hover {
       color: var(--shadow);
-    }
-  }
-
-  .user_nav_button_text {
-    display: inline;
-  }
-
-  .user_nav_button {
-    padding: 8px 16px;
-    width: 80px;
-    height: 38px;
-    font-size: 16px;
-    color: var(--main-color);
-    border: 1px solid var(--main-color);
-    border-radius: var(--md-radius);
-    &:hover {
-      cursor: pointer;
-      color: var(--shadow);
-      border: 1px solid var(--shadow);
     }
   }
 
