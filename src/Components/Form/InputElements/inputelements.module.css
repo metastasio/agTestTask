@@ -18,6 +18,11 @@
     font-size: 14px;
     color: var(--fc-placeholder);
   }
+  &:focus-visible,
+  &:focus {
+    outline: 2px solid var(--accent2);
+    outline-offset: -2px;
+  }
 }
 
 .form_input_wrapper {
@@ -57,10 +62,4 @@
 
 .error {
   border: 1px solid var(--accent);
-  &:focus-visible {
-    border: 1px solid var(--accent);
-  }
-  &:focus {
-    border: 1px solid var(--accent);
-  }
 }

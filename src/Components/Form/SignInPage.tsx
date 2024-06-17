@@ -12,7 +12,7 @@ import { signInSchema } from '../../services/yupSchemas';
 import styles from './formstyles.module.css';
 
 export const SignInPage = () => {
-  const { statusSignIn } = useAppSelector((state) => state.users);
+  const { signIn: signInState } = useAppSelector((state) => state.users);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -57,8 +57,16 @@ export const SignInPage = () => {
           placeholder='cityslicka'
           error={errors.password?.message}
         />
-
-        <FormButton status={statusSignIn}>Войти</FormButton>
+        {signInState.status === 'error' && (
+          <p>
+            {signInState.error === 400
+              ? 'Используйте предзаполненные данные'
+              : 'Произошла ошибка'}
+          </p>
+        )}
+        <FormButton isDisabled={signInState.status === 'loading'}>
+          Войти
+        </FormButton>
 
         <p className={styles.form_input_redirect}>
           Нет аккаунта? <Link to={'/register'}>Зарегистрироваться</Link>

@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 type UsersData = {
   page: number;
@@ -16,22 +16,27 @@ type UsersListProperties = {
   last_name: string;
 };
 
+type AsyncStatus =
+  | {
+      status: 'idle' | 'loading';
+    }
+  | {
+      status: 'error';
+      error: number | unknown;
+    };
+
 type InitialState = {
   usersData: UsersData | null;
-  statusSignIn: string;
-  statusSignUp: string;
-  statusSetUsers: string;
-  userListError: string;
-  authError: string;
+  userStatus: AsyncStatus;
+  signIn: AsyncStatus;
+  signUp: AsyncStatus;
 };
 
 const initialState: InitialState = {
   usersData: null,
-  statusSignIn: 'idle',
-  statusSignUp: 'idle',
-  statusSetUsers: 'idle',
-  userListError: '',
-  authError: '',
+  userStatus: { status: 'idle' },
+  signIn: { status: 'idle' },
+  signUp: { status: 'idle' },
 };
 
 const apiURL = 'https://reqres.in/api/';
@@ -113,27 +118,38 @@ const usersSlice = createSlice({
     builder
       .addCase(setUsers.fulfilled, (state, { payload }) => {
         state.usersData = payload;
-        state.statusSetUsers = 'idle';
+        state.userStatus.status = 'idle';
       })
       .addCase(setUsers.rejected, (state) => {
-        state.statusSetUsers = 'error';
+        state.userStatus.status = 'error';
       })
       .addCase(setUsers.pending, (state) => {
-        state.statusSetUsers = 'loading';
+        state.userStatus.status = 'loading';
+      })
+      .addCase(signUp.fulfilled, (state) => {
+        state.signUp = { status: 'idle' };
       })
       .addCase(signUp.pending, (state) => {
-        state.statusSignUp = 'loading';
+        state.signUp = { status: 'loading' };
       })
-      .addCase(signUp.rejected, (state) => {
-        state.statusSignUp = 'error';
+      .addCase(
+        signUp.rejected,
+        (state, { payload }: PayloadAction<number | unknown>) => {
+          state.signUp = { status: 'error', error: payload };
+        },
+      )
+      .addCase(signIn.fulfilled, (state) => {
+        state.signIn = { status: 'idle' };
       })
       .addCase(signIn.pending, (state) => {
-        state.statusSignIn = 'loading';
+        state.signIn = { status: 'loading' };
       })
-      .addCase(signIn.rejected, (state, { payload }) => {
-        console.log(payload, 'PAYLOAD');
-        state.statusSignIn = 'error';
-      });
+      .addCase(
+        signIn.rejected,
+        (state, { payload }: PayloadAction<number | unknown>) => {
+          state.signIn = { status: 'error', error: payload };
+        },
+      );
   },
 });
 

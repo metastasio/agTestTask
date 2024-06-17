@@ -4,14 +4,14 @@ import cn from 'classnames';
 import styles from './formbutton.module.css';
 
 type FormButtonProps = React.PropsWithChildren & {
-  status: string;
+  isDisabled: boolean;
 };
 
 export const FormButton = (props: FormButtonProps) => {
   return (
     <button
       className={cn(styles.form_input_submit, {
-        [styles.pending]: props.status === 'pending',
+        [styles.pending]: props.isDisabled,
       })}
     >
       {props.children}

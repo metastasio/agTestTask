@@ -12,7 +12,7 @@ import { signUpSchema } from '../../services/yupSchemas';
 import styles from './formstyles.module.css';
 
 export const SignUpPage = () => {
-  const { statusSignUp } = useAppSelector((state) => state.users);
+  const { signUp: signUpState } = useAppSelector((state) => state.users);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -70,10 +70,16 @@ export const SignUpPage = () => {
           label='Подтвердите пароль'
           name='confirmPassword'
           placeholder='pistol'
-          error={errors.password?.message}
+          error={errors.confirmPassword?.message}
         />
-
-        <FormButton status={statusSignUp}>Зарегистрироваться</FormButton>
+        {signUpState.status === 'error' && (
+          <p>
+            {signUpState.error === 400
+              ? 'Используйте предзаполненные данные'
+              : 'Произошла ошибка'}
+          </p>
+        )}
+        <FormButton isDisabled={signUpState.status === 'loading'}>Зарегистрироваться</FormButton>
 
         <p className={styles.form_input_redirect}>
           Есть аккаунт? <Link to={'/login'}>Войти</Link>
