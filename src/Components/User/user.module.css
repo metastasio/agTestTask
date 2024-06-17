@@ -7,8 +7,9 @@
 }
 
 .user_nav {
-  max-width: 1280px;
+  max-width: 1320px;
   margin: 0 auto;
+  padding: 0 20px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -28,6 +29,7 @@
 .user_main_info {
   max-width: 1280px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .user_name {
@@ -52,7 +54,7 @@
 }
 
 .user_about_wrapper {
-  max-width: 1280px;
+  max-width: 1064px;
   margin: 0 auto;
   padding: 32px 16px;
 }
@@ -122,8 +124,7 @@
   }
 
   .user_main_info {
-    padding-left: 188px;
-
+    max-width: 1064px;
     display: flex;
     flex-flow: row nowrap;
     gap: 20px;
@@ -161,7 +162,7 @@
 
 @media (min-width: 1000px) {
   .user_about_wrapper {
-    padding: 40px 100px 0 188px;
+    padding: 40px 20px 0;
     flex-flow: row nowrap;
     gap: 130px;
   }
