@@ -10,6 +10,7 @@ type userListProperties = {
 
 type InitialState = {
   userList: userListProperties[] | null;
+  usersPerPage: number;
   statusSignIn: string;
   statusSignUp: string;
   statusSetUsers: string;
@@ -19,6 +20,7 @@ type InitialState = {
 
 const initialState: InitialState = {
   userList: null,
+  usersPerPage: 6,
   statusSignIn: 'idle',
   statusSignUp: 'idle',
   statusSetUsers: 'idle',
@@ -28,11 +30,14 @@ const initialState: InitialState = {
 
 const apiURL = 'https://reqres.in/api/';
 
-export const setUsers = createAsyncThunk('users/setUsers', async () => {
-  const fetchUsers = await fetch(`${apiURL}users?per_page=8`);
-  const users = await fetchUsers.json();
-  return users.data;
-});
+export const setUsers = createAsyncThunk(
+  'users/setUsers',
+  async (perpage: number) => {
+    const fetchUsers = await fetch(`${apiURL}users?page=1&per_page=${perpage}`);
+    const users = await fetchUsers.json();
+    return users.data;
+  },
+);
 
 export const signUp = createAsyncThunk(
   'users/signUp',
@@ -97,7 +102,12 @@ export const signIn = createAsyncThunk(
 const usersSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {},
+  reducers: {
+    showMoreUsers(state) {
+      console.log('hehe')
+      state.usersPerPage = state.usersPerPage + 6;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(setUsers.fulfilled, (state, { payload }) => {
@@ -120,10 +130,12 @@ const usersSlice = createSlice({
         state.statusSignIn = 'loading';
       })
       .addCase(signIn.rejected, (state, { payload }) => {
-        console.log(payload, 'PAYLOAD')
+        console.log(payload, 'PAYLOAD');
         state.statusSignIn = 'error';
       });
   },
 });
+
+export const { showMoreUsers } = usersSlice.actions;
 
 export default usersSlice.reducer;

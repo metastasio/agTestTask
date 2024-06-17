@@ -1,14 +1,16 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { CardItem } from './CardItem/CardItem';
-import { setUsers } from '../../store/usersSlice';
+import { setUsers, showMoreUsers } from '../../store/usersSlice';
 import { useNavigate } from 'react-router-dom';
-
-import styles from './mainpage.module.css';
 import { LogOutButton } from '../LogOutButton/LogOutButton';
 
+import styles from './mainpage.module.css';
+
+const MAX_USERS = 12;
+
 export const MainPage = () => {
-  const { userList } = useAppSelector((state) => state.users);
+  const { userList, usersPerPage } = useAppSelector((state) => state.users);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -18,15 +20,15 @@ export const MainPage = () => {
   };
 
   useEffect(() => {
-    dispatch(setUsers());
-  }, [dispatch]);
+    dispatch(setUsers(usersPerPage));
+  }, [dispatch, usersPerPage]);
 
   return (
     <>
       <header className={styles.header}>
         <div className={styles.wrapper}>
           <nav className={styles.header_nav}>
-            <LogOutButton logOut={logOut}/>
+            <LogOutButton logOut={logOut} />
           </nav>
 
           <h1 className={styles.header_title}>Наша команда</h1>
@@ -54,6 +56,11 @@ export const MainPage = () => {
           ) : null
           //  {status !== 'Idle' ?  <p>{status} </p> : null}
         }
+        {usersPerPage < MAX_USERS ? (
+          <button className={styles.more_users} onClick={() => dispatch(showMoreUsers())}>
+            Показать еще
+          </button>
+        ) : null}
       </main>
     </>
   );

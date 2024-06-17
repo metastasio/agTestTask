@@ -32,7 +32,7 @@
 
 .main_wrapper {
   max-width: 1460px;
-  margin: 0 auto;
+  margin: 0 auto 56px;
 }
 
 .userlist {
@@ -44,6 +44,20 @@
   align-items: center;
 }
 
+.more_users {
+  display: block;
+  margin: 0 auto;
+  padding: 8px 16px;
+  background-color: transparent;
+  border: 1px solid var(--bg-secondary);
+  border-radius: var(--mini-radius);
+  color: var(--bg-secondary);
+  &:hover {
+    background-color: var(--bg-secondary);
+    color: var(--main-color);
+  }
+}
+
 @media (min-width: 760px) {
   .header {
     padding-left: 80px;
@@ -51,7 +65,7 @@
   }
 
   .userlist {
-    margin: 48px 80px 56px;
+    margin: 48px 80px 0;
     flex-flow: row wrap;
     align-content: center;
     justify-content: center;
