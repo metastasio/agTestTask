@@ -22,8 +22,10 @@ const initialState: InitialState = {
   statusSetUsers: 'idle',
 };
 
+const apiURL = 'https://reqres.in/api/';
+
 export const setUsers = createAsyncThunk('users/setUsers', async () => {
-  const fetchUsers = await fetch('https://reqres.in/api/users?per_page=8');
+  const fetchUsers = await fetch(`${apiURL}users?per_page=8`);
   const users = await fetchUsers.json();
   return users.data;
 });
@@ -38,7 +40,7 @@ export const signUp = createAsyncThunk(
     { rejectWithValue },
   ) => {
     try {
-      const response = await fetch('https://reqres.in/api/register', {
+      const response = await fetch(`${apiURL}register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
@@ -68,7 +70,7 @@ export const signIn = createAsyncThunk(
     { rejectWithValue },
   ) => {
     try {
-      const response = await fetch('https://reqres.in/api/login', {
+      const response = await fetch(`${apiURL}login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),

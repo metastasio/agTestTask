@@ -92,6 +92,17 @@
 }
 
 @media (min-width: 760px) {
+  .user_profile {
+    position: relative;
+  }
+
+  .user_nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 150px;
+  }
+
   .user_nav_link,
   .user_nav_button_svg {
     display: none;
@@ -142,19 +153,16 @@
   .user_profile {
     padding: 32px 80px;
     min-height: 265px;
-    position: relative;
   }
 
   .user_main_info {
+    padding-left: 188px;
+
     display: flex;
     flex-flow: row nowrap;
     gap: 20px;
     justify-content: flex-start;
     align-items: center;
-
-    position: absolute;
-    left: 188px;
-    top: 40px;
   }
 
   .user_pfp {
