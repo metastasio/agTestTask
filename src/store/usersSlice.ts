@@ -1,29 +1,5 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
-type UsersData = {
-  page: number;
-  per_page: number;
-  total: number;
-  total_pages: number;
-  data: UsersListProperties[];
-};
-
-type UsersListProperties = {
-  avatar: string;
-  email: string;
-  first_name: string;
-  id: number;
-  last_name: string;
-};
-
-type AsyncStatus =
-  | {
-      status: 'idle' | 'loading';
-    }
-  | {
-      status: 'error';
-      error: number | unknown;
-    };
+import { AsyncStatus, UsersData } from '../types';
 
 type InitialState = {
   usersData: UsersData | null;
@@ -113,18 +89,25 @@ export const signIn = createAsyncThunk(
 const usersSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {},
+  reducers: {
+    logOut: (state) => {
+      state.userStatus = initialState.userStatus;
+      state.usersData = initialState.usersData;
+      state.signIn = initialState.signIn;
+      state.signUp = initialState.signUp;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(setUsers.fulfilled, (state, { payload }) => {
         state.usersData = payload;
         state.userStatus.status = 'idle';
       })
-      .addCase(setUsers.rejected, (state) => {
-        state.userStatus.status = 'error';
-      })
       .addCase(setUsers.pending, (state) => {
         state.userStatus.status = 'loading';
+      })
+      .addCase(setUsers.rejected, (state) => {
+        state.userStatus.status = 'error';
       })
       .addCase(signUp.fulfilled, (state) => {
         state.signUp = { status: 'idle' };
@@ -152,5 +135,7 @@ const usersSlice = createSlice({
       );
   },
 });
+
+export const { logOut } = usersSlice.actions;
 
 export default usersSlice.reducer;

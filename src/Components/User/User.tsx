@@ -1,12 +1,14 @@
-import { selectCurrentUser, useAppSelector } from '../../store/hooks';
+import { selectCurrentUser, useAppDispatch, useAppSelector } from '../../store/hooks';
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 
 import styles from './user.module.css';
 import { LogOutButton } from '../LogOutButton/LogOutButton';
+import { logOut } from '../../store/usersSlice';
 
 export const User = () => {
   const { id } = useParams();
   const currentUser = useAppSelector(selectCurrentUser(Number(id)));
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   if (!currentUser) {
@@ -15,8 +17,9 @@ export const User = () => {
 
   const { first_name, last_name, avatar, email } = currentUser;
 
-  const logOut = () => {
+  const handleLogOut = () => {
     localStorage.clear();
+    dispatch(logOut());
     navigate('/login');
   };
 
@@ -44,7 +47,7 @@ export const User = () => {
             </Link>
           </div>
 
-          <LogOutButton logOut={logOut} />
+          <LogOutButton logOut={handleLogOut} />
         </nav>
 
         <div className={styles.user_main_info}>
