@@ -45,7 +45,6 @@ export const User = () => {
           </div>
 
           <LogOutButton logOut={logOut} />
-
         </nav>
 
         <div className={styles.user_main_info}>

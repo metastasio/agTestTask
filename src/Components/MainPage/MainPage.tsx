@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { CardItem } from './CardItem/CardItem';
-import { setUsers, showMoreUsers } from '../../store/usersSlice';
+import { setUsers } from '../../store/usersSlice';
 import { useNavigate } from 'react-router-dom';
 import { LogOutButton } from '../LogOutButton/LogOutButton';
 
 import styles from './mainpage.module.css';
 
-const MAX_USERS = 12;
+const USERS_PER_PAGE = 6;
 
 export const MainPage = () => {
-  const { userList, usersPerPage } = useAppSelector((state) => state.users);
+  const { usersData } = useAppSelector((state) => state.users);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -20,8 +20,10 @@ export const MainPage = () => {
   };
 
   useEffect(() => {
-    dispatch(setUsers(usersPerPage));
-  }, [dispatch, usersPerPage]);
+    if (!usersData?.data) {
+      dispatch(setUsers(USERS_PER_PAGE));
+    }
+  }, [dispatch, usersData?.data]);
 
   return (
     <>
@@ -41,26 +43,33 @@ export const MainPage = () => {
       </header>
       <main className={styles.main_wrapper}>
         {
-          userList && userList?.length > 0 ? (
-            <ul className={styles.userlist}>
-              {userList.map((user) => (
-                <CardItem
-                  key={user.id}
-                  id={user.id}
-                  firstName={user.first_name}
-                  lastName={user.last_name}
-                  avatar={user.avatar}
-                />
-              ))}
-            </ul>
+          usersData?.data && usersData?.data.length > 0 ? (
+            <>
+              <ul className={styles.userlist}>
+                {usersData?.data.map((user) => (
+                  <CardItem
+                    key={user.id}
+                    id={user.id}
+                    firstName={user.first_name}
+                    lastName={user.last_name}
+                    avatar={user.avatar}
+                  />
+                ))}
+              </ul>
+              {usersData.page !== usersData.total_pages && (
+                <button
+                  className={styles.more_users}
+                  onClick={() =>
+                    dispatch(setUsers(usersData.per_page + USERS_PER_PAGE))
+                  }
+                >
+                  Показать еще
+                </button>
+              )}
+            </>
           ) : null
           //  {status !== 'Idle' ?  <p>{status} </p> : null}
         }
-        {usersPerPage < MAX_USERS ? (
-          <button className={styles.more_users} onClick={() => dispatch(showMoreUsers())}>
-            Показать еще
-          </button>
-        ) : null}
       </main>
     </>
   );

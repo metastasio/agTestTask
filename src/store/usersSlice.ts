@@ -1,6 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-type userListProperties = {
+type UsersData = {
+  page: number;
+  per_page: number;
+  total: number;
+  total_pages: number;
+  data: UsersListProperties[];
+};
+
+type UsersListProperties = {
   avatar: string;
   email: string;
   first_name: string;
@@ -9,8 +17,7 @@ type userListProperties = {
 };
 
 type InitialState = {
-  userList: userListProperties[] | null;
-  usersPerPage: number;
+  usersData: UsersData | null;
   statusSignIn: string;
   statusSignUp: string;
   statusSetUsers: string;
@@ -19,8 +26,7 @@ type InitialState = {
 };
 
 const initialState: InitialState = {
-  userList: null,
-  usersPerPage: 6,
+  usersData: null,
   statusSignIn: 'idle',
   statusSignUp: 'idle',
   statusSetUsers: 'idle',
@@ -34,8 +40,8 @@ export const setUsers = createAsyncThunk(
   'users/setUsers',
   async (perpage: number) => {
     const fetchUsers = await fetch(`${apiURL}users?page=1&per_page=${perpage}`);
-    const users = await fetchUsers.json();
-    return users.data;
+    const data = await fetchUsers.json();
+    return data;
   },
 );
 
@@ -102,16 +108,11 @@ export const signIn = createAsyncThunk(
 const usersSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {
-    showMoreUsers(state) {
-      console.log('hehe')
-      state.usersPerPage = state.usersPerPage + 6;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(setUsers.fulfilled, (state, { payload }) => {
-        state.userList = payload;
+        state.usersData = payload;
         state.statusSetUsers = 'idle';
       })
       .addCase(setUsers.rejected, (state) => {
@@ -135,7 +136,5 @@ const usersSlice = createSlice({
       });
   },
 });
-
-export const { showMoreUsers } = usersSlice.actions;
 
 export default usersSlice.reducer;

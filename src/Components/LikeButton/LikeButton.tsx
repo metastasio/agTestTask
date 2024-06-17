@@ -7,19 +7,15 @@ type LikeButtonProps = {
 };
 
 export const LikeButton = (props: LikeButtonProps) => {
-  const [like, setLike] = useLocalStorage(String(props.id), 'dislike');
+  const [like, setLike] = useLocalStorage(String(props.id), Boolean(0));
 
   const handleClick = () => {
-    setLike((prev: string) => (prev === 'dislike' ? 'like' : 'dislike'));
+    setLike((prev) => Boolean(!prev));
   };
 
   return (
     <button className={styles.like} onClick={handleClick}>
-      {like === 'like' ? (
-        <img src='/img/like.svg' />
-      ) : (
-        <img src='/img/dislike.svg' />
-      )}
+      {like ? <img src='/img/like.svg' /> : <img src='/img/dislike.svg' />}
     </button>
   );
 };

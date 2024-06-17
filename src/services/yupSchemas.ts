@@ -31,6 +31,8 @@ export const signUpSchema = yup
     confirmPassword: yup
       .string()
       .required('required')
+      .min(6, 'Пароль не должен быть меньше 6 символов')
+      .max(20, 'Пароль не должен превышать 20 символов')
       .oneOf([yup.ref('password')], 'Пароли должны совпадать')
       .trim(),
   })
