@@ -1,6 +1,10 @@
+.wrapper {
+  position: relative;
+}
+
 .user_card {
   margin-bottom: 20px;
-  padding: 36px 20px 20px;
+  padding: 36px 20px 52px;
   width: 305px;
   text-align: center;
   border-radius: var(--base-radius);
@@ -30,13 +34,4 @@
   padding: 0;
   font-size: 20px;
   font-weight: normal;
-}
-
-.user_card_button {
-  display: block;
-  margin-left: auto;
-  border: none;
-  border-radius: var(--mini-radius);
-  height: 28px;
-  width: 30px;
 }

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import styles from './carditem.module.css';
+import { LikeButton } from '../../LikeButton/LikeButton';
 
 type CardItemProps = {
   id: number;
@@ -12,7 +13,7 @@ type CardItemProps = {
 export const CardItem = (props: CardItemProps) => {
   const { id, firstName, lastName, avatar } = props;
   return (
-    <li>
+    <li className={styles.wrapper}>
       <Link className={styles.user_card_link} to={`user/${id}`}>
         <div className={styles.user_card}>
           <img
@@ -25,9 +26,9 @@ export const CardItem = (props: CardItemProps) => {
           <p className={styles.user_card_profile_name}>
             {firstName} {lastName}
           </p>
-      <button className={styles.user_card_button}>3</button>
         </div>
       </Link>
+      <LikeButton id={id} />
     </li>
   );
 };

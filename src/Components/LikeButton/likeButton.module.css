@@ -1,0 +1,16 @@
+.like {
+  display: block;
+  margin-left: auto;
+  border: none;
+  border-radius: var(--mini-radius);
+  height: 28px;
+  width: 30px;
+
+  position: relative;
+  top: -66px;
+  right: 16px;
+}
+
+.like:hover {
+  outline: 1px solid var(--bg-secondary);
+}

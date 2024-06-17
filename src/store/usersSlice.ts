@@ -13,6 +13,8 @@ type InitialState = {
   statusSignIn: string;
   statusSignUp: string;
   statusSetUsers: string;
+  userListError: string;
+  authError: string;
 };
 
 const initialState: InitialState = {
@@ -20,6 +22,8 @@ const initialState: InitialState = {
   statusSignIn: 'idle',
   statusSignUp: 'idle',
   statusSetUsers: 'idle',
+  userListError: '',
+  authError: '',
 };
 
 const apiURL = 'https://reqres.in/api/';
@@ -93,11 +97,7 @@ export const signIn = createAsyncThunk(
 const usersSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {
-    // logIn(state, { payload }: PayloadAction<FormDataEntryValue>) {
-    //   state.error = null;
-    // },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(setUsers.fulfilled, (state, { payload }) => {
@@ -113,14 +113,17 @@ const usersSlice = createSlice({
       .addCase(signUp.pending, (state) => {
         state.statusSignUp = 'loading';
       })
+      .addCase(signUp.rejected, (state) => {
+        state.statusSignUp = 'error';
+      })
       .addCase(signIn.pending, (state) => {
         state.statusSignIn = 'loading';
       })
-      .addCase(signIn.rejected, (state) => {
+      .addCase(signIn.rejected, (state, { payload }) => {
+        console.log(payload, 'PAYLOAD')
         state.statusSignIn = 'error';
       });
   },
 });
-// export const { logIn } = usersSlice.actions;
 
 export default usersSlice.reducer;
