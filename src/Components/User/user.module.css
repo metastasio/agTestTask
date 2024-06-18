@@ -108,6 +108,10 @@
     }
   }
 
+  .user_nav_link_back_desktop:hover .user_nav_link_desktop {
+    color: var(--accent2);
+  }
+
   .user_nav_link_desktop {
     color: var(--main-color);
     &:visited {
