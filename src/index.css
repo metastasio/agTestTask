@@ -37,9 +37,9 @@ body {
 
 a {
   text-decoration: none;
-  color: var(--fc-main);
+  color: var(--secondary-color);
   &:visited {
-    color: var(--secondary-color);
+    color: var(--fc-main);
   }
   &:hover {
     color: var(--accent2);
