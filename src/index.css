@@ -1,5 +1,5 @@
 :root {
-  font-family: Roboto, sans-serif;
+  --ff-main: Roboto, sans-serif;
 
   --fc-main: #151317;
   --main-color: #ffffff;
@@ -32,6 +32,7 @@ body {
   background-color: var(--bg-main);
   color: var(--fc-main);
   font-size: 16px;
+  font-family: var(--ff-main);
 }
 
 a {
