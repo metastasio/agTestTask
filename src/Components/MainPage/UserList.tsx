@@ -18,7 +18,7 @@ export const UserList = () => {
   }, [dispatch, usersData?.data]);
 
   if (userStatus.status === 'loading') {
-    return <p className={styles.error}>Загрузка...</p>;
+    return <p className={styles.loading}>Загрузка...</p>;
   }
 
   if (userStatus.status === 'error') {
