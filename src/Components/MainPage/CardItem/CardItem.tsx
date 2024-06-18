@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
+import { LikeButton } from '../../LikeButton/LikeButton';
 
 import styles from './carditem.module.css';
-import { LikeButton } from '../../LikeButton/LikeButton';
 
 type CardItemProps = {
   id: number;

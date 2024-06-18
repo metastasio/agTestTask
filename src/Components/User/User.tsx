@@ -1,9 +1,9 @@
 import { selectCurrentUser, useAppDispatch, useAppSelector } from '../../store/hooks';
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
+import { logOut } from '../../store/usersSlice';
+import { LogOutButton } from '../LogOutButton/LogOutButton';
 
 import styles from './user.module.css';
-import { LogOutButton } from '../LogOutButton/LogOutButton';
-import { logOut } from '../../store/usersSlice';
 
 export const User = () => {
   const { id } = useParams();
