@@ -37,12 +37,12 @@ body {
 
 a {
   text-decoration: none;
-  color: var(--secondary-color);
+  color: var(--accent2);
   &:visited {
-    color: var(--fc-main);
+    color: var(--secondary-color);
   }
   &:hover {
-    color: var(--accent2);
+    color: var(--fc-main);
   }
 }
 
