@@ -4,6 +4,7 @@
   --fc-main: #151317;
   --main-color: #ffffff;
   --secondary-color: #512689;
+  --accent-link: #7e3bd5;
   --accent: #ff6161;
   --accent2: #009faa;
   --bg-input: #f8f8f8;
@@ -37,12 +38,12 @@ body {
 
 a {
   text-decoration: none;
-  color: var(--accent2);
+  color: var(--secondary-color);
   &:visited {
-    color: var(--secondary-color);
+    color: var(--accent-link);
   }
   &:hover {
-    color: var(--fc-main);
+    color: var(--accent2);
   }
 }
 
