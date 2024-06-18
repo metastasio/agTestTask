@@ -58,6 +58,12 @@
   }
 }
 
+.error {
+  text-align: center;
+  font-size: 20px;
+  color: var(--accent);
+}
+
 @media (min-width: 760px) {
   .header {
     padding-left: 80px;

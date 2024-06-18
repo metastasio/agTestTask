@@ -73,13 +73,15 @@ export const SignUpPage = () => {
           error={errors.confirmPassword?.message}
         />
         {signUpState.status === 'error' && (
-          <p>
+          <p className={styles.error}>
             {signUpState.error === 400
               ? 'Используйте предзаполненные данные'
               : 'Произошла ошибка'}
           </p>
         )}
-        <FormButton isDisabled={signUpState.status === 'loading'}>Зарегистрироваться</FormButton>
+        <FormButton isDisabled={signUpState.status === 'loading'}>
+          Зарегистрироваться
+        </FormButton>
 
         <p className={styles.form_input_redirect}>
           Есть аккаунт? <Link to={'/login'}>Войти</Link>

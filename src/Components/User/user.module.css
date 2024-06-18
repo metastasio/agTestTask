@@ -106,10 +106,13 @@
       color: var(--accent2);
       border: 1px solid var(--accent2);
     }
+    &:focus-visible {
+      outline: 2px solid var(--main-color);
+    }
   }
 
   .user_nav_link_back_desktop:hover .user_nav_link_desktop {
-    color: var(--accent2);
+    color: var(--main-color);
   }
 
   .user_nav_link_desktop {

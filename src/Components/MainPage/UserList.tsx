@@ -18,15 +18,15 @@ export const UserList = () => {
   }, [dispatch, usersData?.data]);
 
   if (userStatus.status === 'loading') {
-    return <p>Загрузка...</p>;
+    return <p className={styles.error}>Загрузка...</p>;
   }
 
   if (userStatus.status === 'error') {
-    return <p>Произошла ошибка</p>;
+    return <p className={styles.error}>Произошла ошибка</p>;
   }
 
   if (!usersData?.data.length) {
-    return <p>Нет пользователей</p>;
+    return <p className={styles.error}>Нет пользователей</p>;
   }
 
   const onClick = () => {

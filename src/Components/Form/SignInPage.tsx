@@ -58,7 +58,7 @@ export const SignInPage = () => {
           error={errors.password?.message}
         />
         {signInState.status === 'error' && (
-          <p>
+          <p className={styles.error}>
             {signInState.error === 400
               ? 'Используйте предзаполненные данные'
               : 'Произошла ошибка'}

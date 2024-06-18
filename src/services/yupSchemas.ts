@@ -30,7 +30,7 @@ export const signUpSchema = yup
       .trim(),
     confirmPassword: yup
       .string()
-      .required('required')
+      .required('Пожалуйста, повторите пароль')
       .oneOf([yup.ref('password')], 'Пароли должны совпадать')
       .trim(),
   })

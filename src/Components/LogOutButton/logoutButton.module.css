@@ -5,6 +5,9 @@
   background-color: transparent;
   width: 40px;
   height: 40px;
+   &:focus-visible {
+      outline: 2px solid var(--accent2);
+    }
 }
 
 .logout_text {
@@ -31,6 +34,9 @@
       cursor: pointer;
       color: var(--accent2);
       border: 1px solid var(--accent2);
+    }
+     &:focus-visible {
+      outline: 2px solid var(--accent2);
     }
   }
 }

@@ -18,3 +18,11 @@
 .form_input_redirect {
   text-align: center;
 }
+
+.error {
+  margin: 0;
+  margin-bottom: 14px;
+  padding: 0;
+  font-size: 14px;
+  color: var(--accent);
+}
