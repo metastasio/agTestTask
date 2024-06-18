@@ -12,5 +12,5 @@
 }
 
 .like:hover {
-  outline: 1px solid var(--bg-secondary);
+  outline: 1px solid var(--accent2);
 }

@@ -3,7 +3,7 @@
 
   --fc-main: #151317;
   --main-color: #ffffff;
-  --bg-secondary: #512689;
+  --secondary-color: #512689;
   --accent: #ff6161;
   --accent2: #009faa;
   --bg-input: #f8f8f8;
@@ -39,7 +39,7 @@ a {
   text-decoration: none;
   color: var(--fc-main);
   &:visited {
-    color: var(--bg-secondary);
+    color: var(--secondary-color);
   }
   &:hover {
     color: var(--accent2);
@@ -51,7 +51,7 @@ button:hover {
 }
 
 button:focus-visible {
-  outline: 1px solid var(--accent2);
+  outline: 2px solid var(--accent2);
 }
 
 .sr_only {
