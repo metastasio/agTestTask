@@ -14,8 +14,7 @@ export const CardItem = (props: CardItemProps) => {
   const { id, firstName, lastName, avatar } = props;
   return (
     <li className={styles.wrapper}>
-      <Link className={styles.user_card_link} to={`user/${id}`}>
-        <div className={styles.user_card}>
+      <Link className={styles.user_card} to={`user/${id}`}>
           <img
             className={styles.user_card_pfp}
             src={avatar}
@@ -26,7 +25,6 @@ export const CardItem = (props: CardItemProps) => {
           <p className={styles.user_card_profile_name}>
             {firstName} {lastName}
           </p>
-        </div>
       </Link>
       <LikeButton id={id} />
     </li>

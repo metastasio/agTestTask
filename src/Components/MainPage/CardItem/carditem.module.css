@@ -3,6 +3,7 @@
 }
 
 .user_card {
+  display: block;
   margin-bottom: 20px;
   padding: 36px 20px 52px;
   width: 305px;
